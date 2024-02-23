@@ -26,6 +26,7 @@ def model(dbt, session):
     
     ## Convertir variable DNF_FLAG a entero
     data['DNF_FLAG'] = data['DNF_FLAG'].astype(int)
+    print(type(data['DNF_FLAG']))
 
     # create confidence metrics for drivers and constructors
     dnf_by_driver = data.groupby('DRIVER').sum()['DNF_FLAG']
