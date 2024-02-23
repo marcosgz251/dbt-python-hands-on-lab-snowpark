@@ -23,6 +23,9 @@ def model(dbt, session):
     # some of the constructors changed their name over the year so replacing old names with current name
     mapping = {'Force India': 'Racing Point', 'Sauber': 'Alfa Romeo', 'Lotus F1': 'Renault', 'Toro Rosso': 'AlphaTauri'}
     data['CONSTRUCTOR_NAME'].replace(mapping, inplace=True)
+    
+    ## Convertir variable DNF_FLAG a entero
+    data['DNF_FLAG'] = data['DNF_FLAG'].astype(int)
 
     # create confidence metrics for drivers and constructors
     dnf_by_driver = data.groupby('DRIVER').sum()['DNF_FLAG']
